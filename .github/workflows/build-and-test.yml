@@ -20,9 +20,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Show build context
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          TRIGGERED_BY: ${{ github.actor }}
         run: |
-          echo "Building PR: ${{ github.event.pull_request.title }}"
-          echo "Triggered by: ${{ github.actor }}"
+          echo "Building PR: $PR_TITLE"
+          echo "Triggered by: $TRIGGERED_BY"
 
       - name: Build
         run: |
